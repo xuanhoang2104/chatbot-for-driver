@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ - Hỗ Trợ Lái Xe Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<style>
+   body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("{{ url_for('static', filename='images/sky.jpg') }}");
+    background-size: cover;
+    background-position: center;
+    color: #333;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #0056b3;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.lead {
+    text-align: center;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+    background-color: #0056b3;
+    border: none;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+    background-color: #004494;
+    transform: translateY(-2px);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #0056b3;
+    color: white;
+    margin-top: 50px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9em;
+} 
+</style>
+<body>
+    <div class="container mt-5">
+        <h1>Chào mừng đến với Hỗ Trợ Lái Xe Chatbot</h1>
+        <p class="lead">Chúng tôi ở đây để hỗ trợ bạn về các dịch vụ liên quan tới lái xe .</p>
+        <hr>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Đăng nhập</h4>
+                        <p class="card-text">Đăng nhập để trò chuyện với chatbot của chúng tôi.</p>
+                        <a href="/login" class="btn">Đăng nhập</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Đăng ký</h4>
+                        <p class="card-text">Tạo tài khoản mới để bắt đầu sử dụng dịch vụ.</p>
+                        <a href="/register" class="btn">Đăng ký</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Trò chuyện ngay</h4>
+                        <p class="card-text">Đã đăng nhập? Hãy bắt đầu trò chuyện với chatbot ngay bây giờ.</p>
+                        <a href="/chat" class="btn">Trò chuyện</a>
+                    </div>
+                    <div class="card-body"></div>
+                        <h4 class="card-title">Trò chuyện ngay</h4>
+                        <p class="card-text">Đã đăng nhập? Hãy bắt đầu trò chuyện với chatbot ngay bây giờ.</p>
+                        <a href="/chat" class="btn">Trò chuyện</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Hỗ Trợ Lái Chatbot</p>
+    </footer>
+</body>
+</html>

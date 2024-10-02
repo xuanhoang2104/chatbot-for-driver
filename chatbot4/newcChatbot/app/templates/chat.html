@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Trò chuyện với Chatbot</h2>
+        <div id="chatbox" class="border border-primary p-3 mb-3" style="height: 300px; overflow-y: scroll;">
+            <!-- Phản hồi của chatbot sẽ hiển thị ở đây -->
+        </div>
+        <form id="messageForm">
+            <div class="form-group">
+                <input type="text" id="userMessage" class="form-control" placeholder="Nhập câu hỏi của bạn..." required>
+            </div>
+            <button type="submit" class="btn btn-primary">Gửi</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('messageForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const userMessage = document.getElementById('userMessage').value;
+
+            // Hiển thị tin nhắn của người dùng
+            document.getElementById('chatbox').innerHTML += `<div> Bạn: ${userMessage}</div>`;
+
+            // Gửi yêu cầu POST đến server
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: userMessage }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hiển thị phản hồi từ chatbot
+                document.getElementById('chatbox').innerHTML += `<div> Chatbot: ${data.reply}</div>`;
+                document.getElementById('userMessage').value = '';  // Xóa ô nhập
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

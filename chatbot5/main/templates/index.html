@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot tư vấn thời trang</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Chatbot tư vấn thời trang</h1>
+        <p>Chào, <strong>{{ fullname }}</strong>! <a href="/logout" class="logout-link">Đăng xuất</a></p>
+
+        <div class="form-container">
+            <textarea id="prompt" rows="5" placeholder="Hãy trò chuyện cùng mình nào..."></textarea>
+            <button id="generateBtn">Hỏi thôi!</button>
+        </div>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        document.getElementById('generateBtn').addEventListener('click', function() {
+            const prompt = document.getElementById('prompt').value;
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = "<p>Đợi mình xíu, mình đang suy nghĩ...</p>";
+
+            // Gửi yêu cầu POST đến Flask API
+            fetch('/generate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ prompt: prompt })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.text) {
+                    outputDiv.innerHTML = `<p>${data.text}</p>`;
+                } else if (data.error) {
+                    outputDiv.innerHTML = `<p class="error">${data.error}</p>`;
+                }
+            })
+            .catch(error => {
+                outputDiv.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+            });
+        });
+    </script>
+</body>
+</html>
